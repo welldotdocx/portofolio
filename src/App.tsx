@@ -3,126 +3,80 @@ import { Badge } from "@/components/ui/badge";
 import { ShieldCheck } from "lucide-react";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { skills } from "@/data/skills";
 
 function App() {
   return (
-    <div className="justify-center items-center flex flex-col p-4">
-      <Avatar className="w-16 h-16 pb-5">
-        <AvatarImage
-          src="https://avatar.iran.liara.run/public/boy"
-          alt="User Avatar"
-          className="w-full h-full object-cover"
-        />
-        <AvatarFallback>R</AvatarFallback>
-      </Avatar>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <main className="container mx-auto px-4 py-8">
+        {/* Profile Section */}
+        <section className="flex flex-col items-center mb-12">
+          <Avatar className="w-24 h-24 mb-4 ring-2 ring-blue-100 transition-transform hover:scale-105">
+            <AvatarImage
+              src="https://avatar.iran.liara.run/public/boy"
+              alt="User Avatar"
+              className="w-full h-full object-cover"
+            />
+            <AvatarFallback>R</AvatarFallback>
+          </Avatar>
 
-      <Badge variant="secondary" className="bg-blue-400 text-white">
-        <ShieldCheck /> Expert
-      </Badge>
+          <Badge
+            variant="secondary"
+            className="bg-blue-400 text-white mb-3 animate-fade-in"
+          >
+            <ShieldCheck className="mr-1" /> Expert
+          </Badge>
 
-      <p className="font-semibold">Razael Saputra</p>
+          <h1 className="text-2xl font-bold mb-2">Razael Saputra</h1>
 
-      <p className="text-sm text-gray-500 text-center max-w-md">
-        Expert web developer specializing in building scalable, accessible, and
-        high-performance web applications using modern technologies like React,
-        TypeScript, and Node.js. I prioritize clean architecture, responsive
-        design, and intuitive user experiences to deliver reliable, maintainable
-        solutions.j
-      </p>
+          <p className="text-gray-600 text-center max-w-xl leading-relaxed mb-8">
+            Expert web developer specializing in building scalable, accessible,
+            and high-performance web applications using modern technologies like
+            React, TypeScript, and Node.js. I prioritize clean architecture,
+            responsive design, and intuitive user experiences to deliver
+            reliable, maintainable solutions.
+          </p>
 
-      <div className="w-full max-w-md mt-6">
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Skills</CardTitle>
-            <CardDescription>
-              Keahlian utama sebagai Web Developer
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-4">
-              <li>
-                <div className="font-semibold">React</div>
-                <div className="text-sm text-gray-500">
-                  Membangun antarmuka reaktif dengan Hooks, Context, dan
-                  optimasi rendering untuk pengalaman pengguna cepat dan
-                  responsif.
-                </div>
-              </li>
-
-              <li>
-                <div className="font-semibold">TypeScript</div>
-                <div className="text-sm text-gray-500">
-                  Menambahkan tipe statis untuk meningkatkan keandalan kode,
-                  refactor aman, dan pengalaman developer yang lebih baik.
-                </div>
-              </li>
-
-              <li>
-                <div className="font-semibold">Node.js & Express</div>
-                <div className="text-sm text-gray-500">
-                  Membangun API backend, handling asynchronous, dan integrasi
-                  dengan database untuk aplikasi full-stack.
-                </div>
-              </li>
-
-              <li>
-                <div className="font-semibold">Next.js</div>
-                <div className="text-sm text-gray-500">
-                  Server-side rendering, static site generation, dan routing
-                  yang efisien untuk performa dan SEO.
-                </div>
-              </li>
-
-              <li>
-                <div className="font-semibold">Tailwind CSS</div>
-                <div className="text-sm text-gray-500">
-                  Utility-first styling untuk UI yang konsisten dan cepat
-                  dibuat, responsif tanpa boilerplate CSS berlebih.
-                </div>
-              </li>
-
-              <li>
-                <div className="font-semibold">Testing & QA</div>
-                <div className="text-sm text-gray-500">
-                  Menulis unit/integration tests (Jest, React Testing Library)
-                  untuk menjaga kualitas dan mencegah regresi.
-                </div>
-              </li>
-
-              <li>
-                <div className="font-semibold">A11y & Performance</div>
-                <div className="text-sm text-gray-500">
-                  Praktik aksesibilitas dan optimasi performa (lazy loading,
-                  code-splitting, dan audit Lighthouse).
-                </div>
-              </li>
-
-              <li>
-                <div className="font-semibold">Git & CI/CD</div>
-                <div className="text-sm text-gray-500">
-                  Workflow Git kolaboratif dan pipeline otomatis untuk build,
-                  test, dan deploy.
-                </div>
-              </li>
-
-              <li>
-                <div className="font-semibold">REST & GraphQL</div>
-                <div className="text-sm text-gray-500">
-                  Merancang API yang konsisten, efisien, dan mudah dikonsumsi
-                  oleh client.
-                </div>
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
-      </div>
+          <div className="w-full max-w-md mt-6">
+            <Card className="w-full transition-all duration-300 hover:shadow-lg">
+              <CardHeader className="space-y-1">
+                <CardTitle className="text-2xl font-bold">Skills</CardTitle>
+                <CardDescription className="text-gray-500">
+                  Keahlian utama sebagai Web Developer
+                </CardDescription>
+              </CardHeader>
+              <Separator className="mb-1" />
+              <CardContent>
+                <ul className="grid gap-4">
+                  {skills.map((skill, index) => (
+                    <li
+                      key={index}
+                      className="p-3 rounded-lg transition-all duration-200 hover:bg-gray-50 hover:translate-x-1"
+                    >
+                      <div
+                        className={`font-semibold mb-1 flex items-center gap-2 ${
+                          skill.color ?? "text-blue-600"
+                        }`}
+                      >
+                        {skill.title}
+                      </div>
+                      <div className="text-sm text-gray-600 leading-relaxed">
+                        {skill.description}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
